@@ -89,8 +89,10 @@ header.scrolled {
 }
 
 .logo-icon {
-    width: 32px;
-    height: 32px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .nav-links {
@@ -377,8 +379,10 @@ header.scrolled {
 }
 
 .footer-logo-icon {
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .footer-tagline {
