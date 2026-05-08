@@ -295,7 +295,7 @@ header.scrolled {
    FOUNDER PAGE
    ========================================= */
 .founder-hero {
-    padding: 10rem 0 4rem;
+    padding: 10rem 0 2rem;
     text-align: center;
 }
 
@@ -316,6 +316,10 @@ header.scrolled {
 .founder-portrait img {
     width: 100%;
     border-radius: 2px;
+}
+
+.founder-hero + .section {
+    padding-top: 3rem;
 }
 
 .founder-content {
