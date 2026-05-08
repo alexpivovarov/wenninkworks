@@ -361,68 +361,61 @@ header.scrolled {
     font-size: 1.1rem;
 }
 
-.services-grid {
+.services-layout {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 4rem;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    align-items: start;
 }
 
-.services-grid.two-col {
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+.services-intro h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
 }
 
-@media screen and (max-width: 600px) {
-    .services-grid.two-col {
-        grid-template-columns: 1fr;
-    }
-}
-
-.service-card {
-    background: var(--clr-bg-card);
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
-    padding: 3rem 2rem;
-    border-radius: 8px;
-    border: 1px solid rgba(255,255,255,0.05);
-    transition: var(--transition-slow);
-    position: relative;
-    overflow: hidden;
-}
-
-.service-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: var(--clr-accent-gold);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.5s ease;
-}
-
-.service-card:hover {
-    transform: translateY(-10px);
-    background: rgba(15, 23, 42, 0.8);
-    border-color: rgba(212, 175, 55, 0.2);
-}
-
-.service-card:hover::before {
-    transform: scaleX(1);
-}
-
-.service-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-.service-card p {
+.services-intro p {
     color: var(--clr-text-muted);
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.services-list {
+    list-style: none;
+}
+
+.services-list li {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.services-list li:first-child {
+    padding-top: 0;
+}
+
+.services-list li:last-child {
+    border-bottom: none;
+}
+
+.services-list strong {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-bottom: 0.4rem;
+    color: var(--clr-text-main);
+}
+
+.services-list span {
+    color: var(--clr-text-muted);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+@media screen and (max-width: 900px) {
+    .services-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
 }
 
 /* =========================================
