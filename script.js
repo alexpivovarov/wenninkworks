@@ -1,28 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Navigation Background on Scroll
     const header = document.getElementById('navbar');
-
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
-
-    // 2. Mobile Menu Toggle
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
     const navOverlay = document.getElementById('navOverlay');
-    const links = document.querySelectorAll('.nav-links li a');
+    const backToTop = document.getElementById('backToTop');
 
-    function toggleMenu() {
-        const isOpen = navLinks.classList.toggle('active');
-        hamburger.classList.toggle('toggle');
-        navOverlay.classList.toggle('active');
-        hamburger.setAttribute('aria-expanded', isOpen);
-    }
+    // Scroll: header + back-to-top
+    window.addEventListener('scroll', () => {
+        header.classList.toggle('scrolled', window.scrollY > 50);
+        backToTop.classList.toggle('visible', window.scrollY > 600);
+    });
 
+    // Mobile menu
     function closeMenu() {
         navLinks.classList.remove('active');
         hamburger.classList.remove('toggle');
@@ -30,60 +19,33 @@ document.addEventListener('DOMContentLoaded', () => {
         hamburger.setAttribute('aria-expanded', 'false');
     }
 
-    hamburger.addEventListener('click', toggleMenu);
+    hamburger.addEventListener('click', () => {
+        const isOpen = navLinks.classList.toggle('active');
+        hamburger.classList.toggle('toggle');
+        navOverlay.classList.toggle('active');
+        hamburger.setAttribute('aria-expanded', isOpen);
+    });
+
     navOverlay.addEventListener('click', closeMenu);
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 
-    links.forEach(link => {
-        link.addEventListener('click', () => {
-            if (navLinks.classList.contains('active')) {
-                closeMenu();
-            }
-        });
-    });
-
-    // 3. Back to Top Button
-    const backToTop = document.getElementById('backToTop');
-
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 600) {
-            backToTop.classList.add('visible');
-        } else {
-            backToTop.classList.remove('visible');
-        }
-    });
-
+    // Back to top
     backToTop.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // 4. Intersection Observer for Scroll Animations
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.15
-    };
-
+    // Scroll animations
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('appear');
-            }
+            if (entry.isIntersecting) entry.target.classList.add('appear');
         });
-    }, observerOptions);
+    }, { threshold: 0.12 });
 
-    const animateElements = document.querySelectorAll('.fade-in-up, .slide-in-left, .slide-in-right');
+    document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
 
-    animateElements.forEach(el => {
-        observer.observe(el);
-    });
-
-    // Trigger animations for elements already in viewport on load
     setTimeout(() => {
-        animateElements.forEach(el => {
-            const rect = el.getBoundingClientRect();
-            if (rect.top < window.innerHeight) {
-                el.classList.add('appear');
-            }
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('appear');
         });
     }, 100);
 });
