@@ -368,6 +368,19 @@ header.scrolled {
     margin-top: 4rem;
 }
 
+.services-grid.two-col {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media screen and (max-width: 600px) {
+    .services-grid.two-col {
+        grid-template-columns: 1fr;
+    }
+}
+
 .service-card {
     background: var(--clr-bg-card);
     backdrop-filter: var(--glass-blur);
@@ -401,11 +414,6 @@ header.scrolled {
 
 .service-card:hover::before {
     transform: scaleX(1);
-}
-
-.service-icon {
-    color: var(--clr-accent-gold);
-    margin-bottom: 1.5rem;
 }
 
 .service-card h3 {
