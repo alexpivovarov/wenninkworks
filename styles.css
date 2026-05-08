@@ -305,6 +305,16 @@ header.scrolled {
     margin-top: 0.5rem;
 }
 
+.founder-portrait {
+    margin-top: 3rem;
+    max-width: 320px;
+}
+
+.founder-portrait img {
+    width: 100%;
+    border-radius: 2px;
+}
+
 .founder-content {
     max-width: 680px;
 }
