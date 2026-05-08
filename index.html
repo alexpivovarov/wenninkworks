@@ -79,11 +79,23 @@
             <div class="services-items">
                 <div class="service-item">
                     <h3>Precision Maintenance</h3>
-                    <p>Hedge trimming, topiary, and lawn care. Every line sharp, every plant thriving.</p>
+                    <p>Hedge trimming, lawn care, and borders kept to a meticulous standard.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Topiary</h3>
+                    <p>Sculpted shapes and formal hedging that give a garden its structure and character.</p>
                 </div>
                 <div class="service-item">
                     <h3>Plant Health Care</h3>
                     <p>Nutrient management, pest control, and soil optimization for long-term vitality.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Vegetable Gardens</h3>
+                    <p>Design and planting of productive kitchen gardens — from raised beds to full allotment-style plots.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Irrigation Systems</h3>
+                    <p>Installation of water irrigation systems to keep your landscape healthy with minimal effort.</p>
                 </div>
                 <div class="service-item">
                     <h3>Seasonal Planting</h3>
@@ -122,8 +134,45 @@
         </div>
     </section>
 
-    <!-- Footer / Contact -->
-    <footer id="contact" class="footer">
+    <!-- Contact Form -->
+    <section id="contact" class="section">
+        <div class="container fade-in-up">
+            <p class="section-label">Contact</p>
+            <h2>Get in touch.</h2>
+            <form class="contact-form" action="https://formsubmit.co/wenninkservices@gmail.com" method="POST">
+                <input type="hidden" name="_subject" value="New enquiry from WenninkWorks website">
+                <input type="hidden" name="_captcha" value="false">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" name="address">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="form-submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
         <div class="container footer-inner">
             <div class="footer-main">
                 <a href="#" class="footer-logo">
@@ -133,7 +182,7 @@
                 <p class="footer-tagline">Working with nature for the future.</p>
             </div>
             <div class="footer-contact">
-                <a href="mailto:contact@wenninkworks.com">contact@wenninkworks.com</a>
+                <a href="mailto:wenninkservices@gmail.com">wenninkservices@gmail.com</a>
                 <a href="tel:+447375270807">+44 7375 270807</a>
             </div>
             <div class="footer-social">
@@ -163,7 +212,7 @@
         "name": "WenninkWorks",
         "description": "Professional horticulture and garden maintenance by Reuben Wennink.",
         "url": "https://wenninkworks.com",
-        "email": "contact@wenninkworks.com",
+        "email": "wenninkservices@gmail.com",
         "founder": { "@type": "Person", "name": "Reuben Wennink" },
         "sameAs": [
             "https://www.instagram.com/wenninkworks/",
