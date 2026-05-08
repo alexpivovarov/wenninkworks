@@ -270,10 +270,11 @@ header.scrolled {
 }
 
 .hero .subtitle {
-    font-family: var(--font-body);
+    font-family: 'Cormorant Garamond', serif;
     text-transform: uppercase;
-    letter-spacing: 4px;
-    font-size: 1rem;
+    letter-spacing: 6px;
+    font-size: 1.4rem;
+    font-weight: 300;
     color: var(--clr-accent-gold);
     margin-bottom: 1rem;
 }
