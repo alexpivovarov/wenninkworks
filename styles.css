@@ -234,6 +234,17 @@ header.scrolled {
     margin-bottom: 1rem;
 }
 
+.inline-link {
+    color: var(--text);
+    border-bottom: 1px solid var(--text-dim);
+    padding-bottom: 1px;
+}
+
+.inline-link:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
 .about-image img {
     width: 100%;
     border-radius: 2px;
@@ -278,6 +289,51 @@ header.scrolled {
     font-size: 1rem;
     color: var(--text-mid);
     line-height: 1.7;
+}
+
+/* =========================================
+   FOUNDER PAGE
+   ========================================= */
+.founder-hero {
+    padding: 10rem 0 4rem;
+}
+
+.founder-hero h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-top: 0.5rem;
+}
+
+.founder-content {
+    max-width: 680px;
+}
+
+.founder-block {
+    margin-bottom: 4rem;
+}
+
+.founder-block h2 {
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-bottom: 1.2rem;
+}
+
+.founder-block p {
+    font-size: 1.05rem;
+    color: var(--text-mid);
+    line-height: 1.85;
+    margin-bottom: 1rem;
+}
+
+.founder-block p:last-child {
+    margin-bottom: 0;
+}
+
+.founder-cta {
+    margin-top: 1rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 /* =========================================
