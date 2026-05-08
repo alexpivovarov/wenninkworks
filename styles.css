@@ -295,7 +295,7 @@ header.scrolled {
    FOUNDER PAGE
    ========================================= */
 .founder-hero {
-    padding: 10rem 0 2rem;
+    padding: 10rem 0 0;
     text-align: center;
 }
 
@@ -319,7 +319,7 @@ header.scrolled {
 }
 
 .founder-hero + .section {
-    padding-top: 3rem;
+    padding-top: 1.5rem;
 }
 
 .founder-content {
