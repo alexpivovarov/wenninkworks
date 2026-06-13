@@ -186,6 +186,15 @@ header.solid .hamburger div {
     background-size: cover;
     background-position: center;
     z-index: 1;
+    animation: kenburns 22s ease-in-out infinite;
+    transform-origin: center center;
+}
+
+@keyframes kenburns {
+    0%   { transform: scale(1)    translate(0, 0); }
+    30%  { transform: scale(1.07) translate(-1.5%, -1%); }
+    60%  { transform: scale(1.04) translate(1%, 0.5%); }
+    100% { transform: scale(1)    translate(0, 0); }
 }
 
 .hero-overlay {
@@ -488,7 +497,18 @@ header.solid .hamburger div {
    ========================================= */
 #contact h2 {
     font-size: clamp(1.9rem, 3.2vw, 2.5rem);
+    margin-bottom: 1rem;
+}
+
+.contact-note {
+    max-width: 580px;
+    font-size: 0.95rem;
+    color: var(--ink-mid);
+    font-style: italic;
     margin-bottom: 2.5rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--gold);
+    line-height: 1.7;
 }
 
 .contact-form {
@@ -574,6 +594,83 @@ header.solid .hamburger div {
 
     .contact-form {
         padding: 1.5rem;
+    }
+}
+
+/* =========================================
+   SEASONS STRIP
+   ========================================= */
+.seasons-strip {
+    background: var(--navy);
+    padding: 2.5rem 0;
+}
+
+.seasons-inner {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.seasons-heading {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--gold);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.seasons-list {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex-wrap: wrap;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.season-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0 1.5rem;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.season-icon {
+    font-size: 1.1rem;
+    line-height: 1;
+}
+
+.season-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.season-divider {
+    width: 1px;
+    height: 1.2rem;
+    background: rgba(255, 255, 255, 0.2);
+    flex-shrink: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .seasons-inner {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+    }
+
+    .seasons-list {
+        justify-content: center;
+    }
+
+    .season-item {
+        padding: 0 1rem;
     }
 }
 
@@ -703,6 +800,43 @@ header.solid .hamburger div {
     color: var(--gold-dark);
     border-color: var(--gold);
     transform: translateY(-2px);
+}
+
+/* =========================================
+   AMBIENT SOUND TOGGLE
+   ========================================= */
+.sound-toggle {
+    position: fixed;
+    bottom: 5.2rem;
+    right: 2rem;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    color: var(--ink-mid);
+    box-shadow: var(--shadow-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: color 0.3s, border-color 0.3s, transform 0.3s;
+    z-index: 900;
+}
+
+.sound-toggle:hover {
+    color: var(--gold-dark);
+    border-color: var(--gold);
+    transform: translateY(-2px);
+}
+
+.sound-toggle.playing {
+    color: var(--gold-dark);
+    border-color: var(--gold);
+}
+
+.sound-toggle svg {
+    pointer-events: none;
 }
 
 /* =========================================

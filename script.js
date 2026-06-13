@@ -34,6 +34,27 @@ document.addEventListener('DOMContentLoaded', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
+    // Ambient rain sound toggle
+    const soundToggle = document.getElementById('soundToggle');
+    const ambientAudio = document.getElementById('ambientAudio');
+    const soundIconOff = document.getElementById('soundIconOff');
+    const soundIconOn = document.getElementById('soundIconOn');
+
+    soundToggle.addEventListener('click', () => {
+        if (ambientAudio.paused) {
+            ambientAudio.volume = 0.35;
+            ambientAudio.play();
+            soundToggle.classList.add('playing');
+            soundIconOff.style.display = 'none';
+            soundIconOn.style.display = 'block';
+        } else {
+            ambientAudio.pause();
+            soundToggle.classList.remove('playing');
+            soundIconOff.style.display = 'block';
+            soundIconOn.style.display = 'none';
+        }
+    });
+
     // Scroll animations
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
