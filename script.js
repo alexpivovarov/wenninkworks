@@ -43,29 +43,58 @@ document.addEventListener('DOMContentLoaded', () => {
     let rainNodes = null;
 
     function createRain(ctx) {
-        const bufferSize = ctx.sampleRate * 4;
-        const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-        const data = noiseBuffer.getChannelData(0);
-        for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
+        // Stereo pink noise buffer (8s loop) — pink noise sounds far more natural than white
+        const bufferSize = ctx.sampleRate * 8;
+        const noiseBuffer = ctx.createBuffer(2, bufferSize, ctx.sampleRate);
+
+        for (let ch = 0; ch < 2; ch++) {
+            const data = noiseBuffer.getChannelData(ch);
+            let b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
+            for (let i = 0; i < bufferSize; i++) {
+                const w = Math.random() * 2 - 1;
+                // Paul Kellett's pink noise approximation
+                b0 = 0.99886 * b0 + w * 0.0555179;
+                b1 = 0.99332 * b1 + w * 0.0750759;
+                b2 = 0.96900 * b2 + w * 0.1538520;
+                b3 = 0.86650 * b3 + w * 0.3104856;
+                b4 = 0.55000 * b4 + w * 0.5329522;
+                b5 = -0.7616 * b5 - w * 0.0168980;
+                data[i] = (b0 + b1 + b2 + b3 + b4 + b5 + b6 + w * 0.5362) * 0.12;
+                b6 = w * 0.115926;
+            }
+        }
 
         const source = ctx.createBufferSource();
         source.buffer = noiseBuffer;
         source.loop = true;
 
-        const lowpass = ctx.createBiquadFilter();
-        lowpass.type = 'lowpass';
-        lowpass.frequency.value = 800;
-
+        // Shape noise to sound like rain: cut extreme lows and highs
         const highpass = ctx.createBiquadFilter();
         highpass.type = 'highpass';
-        highpass.frequency.value = 200;
+        highpass.frequency.value = 300;
+        highpass.Q.value = 0.4;
 
+        const lowpass = ctx.createBiquadFilter();
+        lowpass.type = 'lowpass';
+        lowpass.frequency.value = 3500;
+        lowpass.Q.value = 0.4;
+
+        // Gentle presence boost in the "patter" range
+        const peak = ctx.createBiquadFilter();
+        peak.type = 'peaking';
+        peak.frequency.value = 1400;
+        peak.gain.value = 4;
+        peak.Q.value = 0.7;
+
+        // Fade in gently over 2 seconds
         const gain = ctx.createGain();
-        gain.gain.value = 0.28;
+        gain.gain.setValueAtTime(0, ctx.currentTime);
+        gain.gain.linearRampToValueAtTime(0.38, ctx.currentTime + 2);
 
-        source.connect(lowpass);
-        lowpass.connect(highpass);
-        highpass.connect(gain);
+        source.connect(highpass);
+        highpass.connect(lowpass);
+        lowpass.connect(peak);
+        peak.connect(gain);
         gain.connect(ctx.destination);
         source.start();
 
@@ -81,7 +110,10 @@ document.addEventListener('DOMContentLoaded', () => {
             soundIconOff.style.display = 'none';
             soundIconOn.style.display = 'block';
         } else {
-            rainNodes.source.stop();
+            // Fade out over 1.5 seconds before stopping
+            rainNodes.gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 1.5);
+            const nodeToStop = rainNodes.source;
+            setTimeout(() => nodeToStop.stop(), 1600);
             rainNodes = null;
             soundToggle.classList.remove('playing');
             soundIconOff.style.display = 'block';
