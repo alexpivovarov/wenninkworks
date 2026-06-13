@@ -146,6 +146,13 @@ header.solid .nav-links a:hover {
     color: var(--gold-dark);
 }
 
+.nav-links a.active,
+header.scrolled .nav-links a.active,
+header.solid .nav-links a.active {
+    color: var(--gold);
+    font-weight: 600;
+}
+
 .hamburger {
     display: none;
     cursor: pointer;
