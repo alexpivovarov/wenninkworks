@@ -423,6 +423,18 @@ header.solid .hamburger div {
     border-top: 1px solid var(--line);
 }
 
+.founder-photo {
+    margin-top: 4rem;
+    text-align: center;
+}
+
+.founder-photo img {
+    max-width: 420px;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+}
+
 /* =========================================
    GALLERY
    ========================================= */
