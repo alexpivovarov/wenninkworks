@@ -34,21 +34,55 @@ document.addEventListener('DOMContentLoaded', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // Ambient rain sound toggle
+    // Ambient rain sound (generated via Web Audio API — no file needed)
     const soundToggle = document.getElementById('soundToggle');
-    const ambientAudio = document.getElementById('ambientAudio');
     const soundIconOff = document.getElementById('soundIconOff');
     const soundIconOn = document.getElementById('soundIconOn');
 
+    let audioCtx = null;
+    let rainNodes = null;
+
+    function createRain(ctx) {
+        const bufferSize = ctx.sampleRate * 4;
+        const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        const data = noiseBuffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
+
+        const source = ctx.createBufferSource();
+        source.buffer = noiseBuffer;
+        source.loop = true;
+
+        const lowpass = ctx.createBiquadFilter();
+        lowpass.type = 'lowpass';
+        lowpass.frequency.value = 800;
+
+        const highpass = ctx.createBiquadFilter();
+        highpass.type = 'highpass';
+        highpass.frequency.value = 200;
+
+        const gain = ctx.createGain();
+        gain.gain.value = 0.28;
+
+        source.connect(lowpass);
+        lowpass.connect(highpass);
+        highpass.connect(gain);
+        gain.connect(ctx.destination);
+        source.start();
+
+        return { source, gain };
+    }
+
     soundToggle.addEventListener('click', () => {
-        if (ambientAudio.paused) {
-            ambientAudio.volume = 0.35;
-            ambientAudio.play();
+        if (!rainNodes) {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            rainNodes = createRain(audioCtx);
             soundToggle.classList.add('playing');
             soundIconOff.style.display = 'none';
             soundIconOn.style.display = 'block';
         } else {
-            ambientAudio.pause();
+            rainNodes.source.stop();
+            rainNodes = null;
             soundToggle.classList.remove('playing');
             soundIconOff.style.display = 'block';
             soundIconOn.style.display = 'none';
