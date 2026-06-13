@@ -39,6 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const soundIconOff = document.getElementById('soundIconOff');
     const soundIconOn  = document.getElementById('soundIconOn');
 
+    if (soundToggle) {
+
     let audioCtx   = null;
     let natureSc   = null;
 
@@ -193,6 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
             soundIconOn.style.display  = 'none';
         }
     });
+    } // end soundToggle guard
 
     // Scroll animations
     const observer = new IntersectionObserver((entries) => {
