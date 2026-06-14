@@ -732,9 +732,11 @@ header.solid .hamburger div {
 
 @media screen and (max-width: 768px) {
     .seasons-inner {
-        flex-direction: column;
         gap: 1.5rem;
-        text-align: center;
+    }
+
+    .seasons-heading {
+        font-size: 0.95rem;
     }
 
     .seasons-list {
@@ -742,7 +744,21 @@ header.solid .hamburger div {
     }
 
     .season-item {
-        padding: 0 1rem;
+        padding: 0 0.9rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .seasons-inner {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.25rem;
+        text-align: center;
+    }
+
+    .seasons-heading {
+        text-align: center;
+        font-size: 1rem;
     }
 }
 
@@ -874,42 +890,6 @@ header.solid .hamburger div {
     transform: translateY(-2px);
 }
 
-/* =========================================
-   AMBIENT SOUND TOGGLE
-   ========================================= */
-.sound-toggle {
-    position: fixed;
-    bottom: 5.2rem;
-    right: 2rem;
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    color: var(--ink-mid);
-    box-shadow: var(--shadow-md);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: color 0.3s, border-color 0.3s, transform 0.3s;
-    z-index: 900;
-}
-
-.sound-toggle:hover {
-    color: var(--gold-dark);
-    border-color: var(--gold);
-    transform: translateY(-2px);
-}
-
-.sound-toggle.playing {
-    color: var(--gold-dark);
-    border-color: var(--gold);
-}
-
-.sound-toggle svg {
-    pointer-events: none;
-}
 
 /* =========================================
    ANIMATIONS
