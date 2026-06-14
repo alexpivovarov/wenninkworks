@@ -760,6 +760,31 @@ header.solid .hamburger div {
         text-align: center;
         font-size: 1rem;
     }
+
+    .seasons-list {
+        flex-wrap: nowrap;
+        gap: 0.5rem;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .season-divider {
+        display: none;
+    }
+
+    .season-item {
+        padding: 0 0.2rem;
+        gap: 0.25rem;
+    }
+
+    .season-icon {
+        font-size: 0.9rem;
+    }
+
+    .season-name {
+        font-size: 0.72rem;
+        letter-spacing: 0.5px;
+    }
 }
 
 /* =========================================
